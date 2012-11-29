@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 feature 'Send balance file' do
@@ -19,6 +20,15 @@ feature 'Send balance file' do
 			click_button 'Enviar'
 			page.should have_content 'Arquivo enviado com sucesso.'
 			Balance.all.size.should == 4
+		end
+	end
+
+	context 'when receive an invalid file' do
+		it 'show error message' do
+			visit new_balance_path
+			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/empty.tab"
+			click_button 'Enviar'
+			page.should have_content 'inválido'
 		end
 	end
 end

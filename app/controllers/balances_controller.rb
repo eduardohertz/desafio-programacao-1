@@ -21,6 +21,7 @@ class BalancesController < ApplicationController
     @balance_file = BalanceFile.new(params[:balance_file])
 
     if @balance_file.valid?
+      @balance_file.parse
       redirect_to @balance, notice: 'Arquivo enviado com sucesso.'
     else
       render action: "new"

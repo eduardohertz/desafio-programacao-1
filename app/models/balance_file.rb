@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class BalanceFile
 	include ActiveModel::Validations
 
@@ -13,6 +14,15 @@ class BalanceFile
 	end
 
 	def valid?
+		unless self.file && self.file.present?
+			errors.add(:file, 'inválido')
+			return false
+		end
+		
+		true
+	end
+
+	def parse
 		self.file.each do |line|
 			purchaser_name, description, price, 
 			count, address, name = line.split(/\t/)
