@@ -69,17 +69,17 @@ describe BalancesController do
     describe "with valid params" do
       it "creates a new Balance" do
         expect {
-          post :create, {:balance => valid_attributes}, valid_session
-        }.to change(Balance, :count).by(0)
+          post :create, {:balance => valid_attributes, balance_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
+        }.to change(Balance, :count).by(4)
       end
 
       it "assigns a newly created balance as @balance" do
-        post :create, {:balance => valid_attributes}, valid_session
+        post :create, {:balance => valid_attributes, balance_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
         assigns(:balance).should be_a(Balance)
       end
 
       it "redirects to the created balance" do
-        post :create, {:balance => valid_attributes}, valid_session
+        post :create, {:balance => valid_attributes, balance_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
         response.should redirect_to(balances_path)
       end
     end
@@ -88,7 +88,7 @@ describe BalancesController do
       it "assigns a newly created but unsaved balance as @balance" do
         # Trigger the behavior that occurs when invalid params are submitted
         Balance.any_instance.stub(:save).and_return(false)
-        post :create, {:balance => {  }}, valid_session
+        post :create, {:balance => {  }, balance_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
         assigns(:balance).should be_a_new(Balance)
       end
 

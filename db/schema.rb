@@ -14,8 +14,14 @@
 ActiveRecord::Schema.define(:version => 20121129143740) do
 
   create_table "balances", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "purchaser_name"
+    t.string   "item_description"
+    t.float    "item_price"
+    t.string   "purchase_count"
+    t.string   "merchant_address"
+    t.string   "merchant_name"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end
