@@ -1,10 +1,10 @@
-class CreateBalances < ActiveRecord::Migration
+class CreateEntries < ActiveRecord::Migration
   def change
-    create_table :balances do |t|
+    create_table :entries do |t|
     	t.string :purchaser_name
     	t.string :item_description
     	t.float  :item_price
-    	t.string :purchase_count
+    	t.integer :purchase_count
   		t.string :merchant_address
   		t.string :merchant_name
 

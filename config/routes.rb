@@ -1,7 +1,7 @@
 Myfreecomm::Application.routes.draw do
 
-  resources :balances
+  resources :entries
 
-  root :to => 'balances#index'
+  root :to => 'entries#index'
 
 end

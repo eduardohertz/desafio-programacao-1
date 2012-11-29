@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class BalanceFile
+class EntryFile
 	include ActiveModel::Validations
 
 	attr_accessor :file, :entries
@@ -26,7 +26,7 @@ class BalanceFile
 		self.file.each do |line|
 			purchaser_name, description, price, 
 			count, address, name = line.split(/\t/)
-			self.entries << Balance.create!(purchaser_name: purchaser_name,
+			self.entries << Entry.create!(purchaser_name: purchaser_name,
 												item_description: description,
 												item_price: price,
 												purchase_count: count,

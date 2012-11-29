@@ -1,8 +1,8 @@
-<%= simple_form_for(@balance, html: { multipart: true }) do |f| %>
+<%= simple_form_for(@entry, html: { multipart: true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-  	<%= simple_fields_for(@balance_file) do |b| %>
+  	<%= simple_fields_for(@entry_file) do |b| %>
   		<%= b.input :file, as: 'file' %>
   	<% end %>
   </div>

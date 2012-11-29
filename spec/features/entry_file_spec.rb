@@ -9,23 +9,23 @@ feature 'Send balance file' do
 			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/data.tab"
 			click_button 'Enviar'
 			page.should have_content 'Arquivo enviado com sucesso.'
-			current_path.should == balances_path
+			current_path.should == entries_path
 		end
 
 		it 'create an entry for each line' do
-			Balance.all.size.should == 0
+			Entry.all.size.should == 0
 			visit root_path
 			click_link 'Enviar arquivo'
 			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/data.tab"
 			click_button 'Enviar'
 			page.should have_content 'Arquivo enviado com sucesso.'
-			Balance.all.size.should == 4
+			Entry.all.size.should == 4
 		end
 	end
 
 	context 'when receive an invalid file' do
 		it 'show error message' do
-			visit new_balance_path
+			visit new_entry_path
 			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/empty.tab"
 			click_button 'Enviar'
 			page.should have_content 'inválido'
