@@ -1,6 +1,7 @@
 Myfreecomm::Application.routes.draw do
 
-  resources :entries
+  resources :entries, except: [:show]
+	get '/entries/:token' => 'entries#show', as: 'entry'
 
   root :to => 'entries#index'
 

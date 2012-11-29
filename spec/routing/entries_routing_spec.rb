@@ -13,7 +13,7 @@ describe EntriesController do
     end
 
     it "routes to #show" do
-      get("/entries/1").should route_to("entries#show", :id => "1")
+      get("/entries/asdmimasd").should route_to("entries#show", :token => "asdmimasd")
     end
 
     it "routes to #edit" do

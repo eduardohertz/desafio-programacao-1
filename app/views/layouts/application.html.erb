@@ -48,7 +48,7 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Enviar arquivo", new_entry_path  %></li>
-              <li><%= link_to "Receita bruta total", ""  %></li>
+              <li><%= link_to "Receita bruta total", entries_path  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -58,7 +58,9 @@
     <div class="container">
         <div class="row">
           <div class="span12">
-              <p><%= notice %></p>
+              <% if notice %>
+                <p class="alert alert-notice"><%= notice %></p>
+              <% end %>
              <%= yield %>
           </div>
         </div><!--/row-->

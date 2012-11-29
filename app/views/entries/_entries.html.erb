@@ -1,0 +1,38 @@
+<div class="alert alert-info">
+  <p><strong>Receita bruta total:</strong> <%= number_to_currency(@revenue) %></p>
+</div>
+
+
+<h1>Entradas</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Nome do comprador</th>
+    <th>Descrição</th>
+    <th>Preço</th>
+    <th>Quantidade</th>
+    <th>Endereço do comerciante</th>
+    <th>Nome do comerciante</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @entries.each do |entry| %>
+  <tr>
+    <td><%= entry.purchaser_name %></td>
+    <td><%= entry.item_description %></td>
+    <td><%= number_to_currency(entry.item_price) %></td>
+    <td><%= entry.purchase_count %></td>
+    <td><%= entry.merchant_address %></td>
+    <td><%= entry.merchant_name %></td>
+    <td><%= link_to ' Visualizar', entry, class: 'icon icon-eye-open' %></td>
+    <td><%= link_to ' Editar', edit_entry_path(entry), class: 'icon icon-pencil' %></td>
+    <td><%= link_to ' Apagar', entry, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'icon icon-remove' %></td>
+  </tr>
+<% end %>
+<tr class="info">
+  <td colspan="8"><strong>TOTAL</strong></td>
+  <td><strong><%= number_to_currency(@revenue) %></strong></td>
+</tr>
+</table>

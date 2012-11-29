@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121129143740) do
     t.integer  "purchase_count"
     t.string   "merchant_address"
     t.string   "merchant_name"
+    t.string   "image_token"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

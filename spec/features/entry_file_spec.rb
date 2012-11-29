@@ -9,7 +9,24 @@ feature 'Send balance file' do
 			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/data.tab"
 			click_button 'Enviar'
 			page.should have_content 'Arquivo enviado com sucesso.'
-			current_path.should == entries_path
+		end
+
+		it 'show only its entries' do
+			FactoryGirl.create :entry
+			visit root_path
+			click_link 'Enviar arquivo'
+			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/data.tab"
+			click_button 'Enviar'
+			page.should have_content 'Receita bruta total: R$ 95,00'
+			entries = Entry.where('image_token = ?', Entry.last.image_token)
+			entries.each_with_index do |entry, index|
+				within("table tr[#{index+2}]") do
+					page.should have_content entry.purchaser_name
+					page.should have_content entry.item_description
+					page.should have_content entry.purchase_count
+				end
+			end
+			lambda { find('table tr[7]') }.should raise_error Capybara::ElementNotFound
 		end
 
 		it 'create an entry for each line' do

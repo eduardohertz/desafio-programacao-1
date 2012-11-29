@@ -1,10 +1,12 @@
 class EntriesController < ApplicationController
   def index
     @entries = Entry.all
+    @revenue = Entry.revenue
   end
 
   def show
-    @entry = Entry.find(params[:id])
+    @entries = Entry.where('image_token = ?', params[:token])
+    @revenue = Entry.revenue(params[:token])
   end
 
   def new
@@ -22,7 +24,7 @@ class EntriesController < ApplicationController
 
     if @entry_file.valid?
       @entry_file.parse
-      redirect_to @entry, notice: 'Arquivo enviado com sucesso.'
+      redirect_to entry_path(token: @entry_file.image_token), notice: 'Arquivo enviado com sucesso.'
     else
       render action: "new"
     end

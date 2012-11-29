@@ -42,14 +42,6 @@ describe EntriesController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested entry as @entry" do
-      entry = Entry.create! valid_attributes
-      get :show, {:id => entry.to_param}, valid_session
-      assigns(:entry).should eq(entry)
-    end
-  end
-
   describe "GET new" do
     it "assigns a new entry as @entry" do
       get :new, {}, valid_session
@@ -76,11 +68,6 @@ describe EntriesController do
       it "assigns a newly created entry as @entry" do
         post :create, {:entry => valid_attributes, entry_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
         assigns(:entry).should be_a(Entry)
-      end
-
-      it "redirects to the created entry" do
-        post :create, {:entry => valid_attributes, entry_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
-        response.should redirect_to(entries_path)
       end
     end
 

@@ -7,6 +7,7 @@ class CreateEntries < ActiveRecord::Migration
     	t.integer :purchase_count
   		t.string :merchant_address
   		t.string :merchant_name
+      t.string :image_token
 
       t.timestamps
     end

@@ -1,13 +1,17 @@
 # -*- encoding : utf-8 -*-
+
+require 'digest/sha1'
+
 class EntryFile
 	include ActiveModel::Validations
 
-	attr_accessor :file, :entries
+	attr_accessor :file, :entries, :image_token
 
 	def initialize(params={})
 		if params && params[:file]
 			@file = params[:file].read.split(/\n/) 
 			@file.shift
+			@image_token = Digest::SHA1.hexdigest Time.now.to_s
 		end
 
 		@entries = []
@@ -31,7 +35,8 @@ class EntryFile
 												item_price: price,
 												purchase_count: count,
 												merchant_address: address,
-												merchant_name: name)
+												merchant_name: name,
+												image_token: self.image_token)
 		end
 	end
 end
