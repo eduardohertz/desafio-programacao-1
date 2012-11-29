@@ -21,4 +21,5 @@ group :test do
 	gem 'spork'
 	gem 'launchy'
 	gem 'shoulda-matchers'
+	gem 'database_cleaner'
 end

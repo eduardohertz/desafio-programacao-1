@@ -200,6 +200,11 @@ pt-BR:
     pm: ''
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
+    model:
+      balance_file: 'Arquivo de balanço'
+    attributes:
+      balance_file:
+        file: 'Arquivo'
     errors:
       <<: *errors
   activerecord:
