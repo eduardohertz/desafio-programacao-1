@@ -208,5 +208,13 @@ pt-BR:
     errors:
       <<: *errors
   activerecord:
+    model:
+      user: 'User'
+    attributes:
+      user:
+        email: 'E-mail'
+        password: 'Senha'
+        password_confirmation: 'Confirmação da senha'
+        remember_me: 'Manter conectado'
     errors:
       <<: *errors

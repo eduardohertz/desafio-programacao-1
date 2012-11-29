@@ -5,8 +5,9 @@ gem 'mysql2'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'thin'
-gem "less-rails"
+gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'devise'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
