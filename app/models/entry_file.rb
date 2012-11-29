@@ -26,7 +26,7 @@ class EntryFile
 		true
 	end
 
-	def parse
+	def parse_and_create
 		self.file.each do |line|
 			purchaser_name, description, price, 
 			count, address, name = line.split(/\t/)

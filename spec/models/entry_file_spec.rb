@@ -17,7 +17,7 @@ describe EntryFile do
 
 	it '#parse should separate entries' do
 		entry_file = EntryFile.new(file: File.open("#{Rails.root}/spec/fixtures/data.tab"))
-		entry_file.parse
+		entry_file.parse_and_create
 		entry_file.entries.size.should == 4
 		Entry.all.size.should == 4
 	end

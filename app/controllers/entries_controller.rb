@@ -23,7 +23,7 @@ class EntriesController < ApplicationController
     @entry_file = EntryFile.new(params[:entry_file])
 
     if @entry_file.valid?
-      @entry_file.parse
+      @entry_file.parse_and_create
       redirect_to entry_path(token: @entry_file.image_token), notice: 'Arquivo enviado com sucesso.'
     else
       render action: "new"
