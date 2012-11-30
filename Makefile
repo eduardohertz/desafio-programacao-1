@@ -46,6 +46,14 @@ run:
 	@echo "==    Inicializando servidor    =="
 	@echo "=================================="
 	@echo ""
+	@echo ""
+	@echo "=================================="
+	@echo "Usuário padrão criado"
+	@echo "Login: user@base.com"
+	@echo "Senha: 123456"
+	@echo "=================================="
+	@echo ""
+	@echo ""
 	@rails s -e production
 
 database:
