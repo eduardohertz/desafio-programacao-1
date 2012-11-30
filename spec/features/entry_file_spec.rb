@@ -26,7 +26,7 @@ feature 'Send balance file' do
 		end
 
 		it 'show only entries of the user' do
-			FactoryGirl.create :entry
+			FactoryGirl.create :entry, item_price: 300
 			visit root_path
 			click_link 'Enviar arquivo'
 			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/data.tab"

@@ -4,12 +4,12 @@ class EntriesController < ApplicationController
 
   def index
     @entries = Entry.where('user_id = ?', current_user.id)
-    @revenue = Entry.revenue
+    @revenue = Entry.revenue(user_id: current_user.id)
   end
 
   def show
     @entries = Entry.where('image_token = ?', params[:token])
-    @revenue = Entry.revenue(params[:token])
+    @revenue = Entry.revenue(token: params[:token], user_id: current_user.id)
   end
 
   def new

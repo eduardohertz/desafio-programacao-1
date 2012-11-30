@@ -4,10 +4,10 @@ class Entry < ActiveRecord::Base
 
   belongs_to :user
 
-  def self.revenue(token=nil)
-  	if token
-			return where('image_token = ?', token).sum('item_price*purchase_count')
+  def self.revenue(opts={})
+  	if opts[:token]
+			return where('image_token = ? AND user_id = ?', opts[:token], opts[:user_id]).sum('item_price*purchase_count')
 		end
-		sum('item_price*purchase_count')
+		where('user_id = ?', opts[:user_id]).sum('item_price*purchase_count')
   end
 end

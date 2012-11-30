@@ -41,7 +41,7 @@ feature 'Balance' do
 		end
 
 		it 'show balance' do
-			FactoryGirl.create :entry, item_price: 10, purchase_count: 3
+			FactoryGirl.create :entry, item_price: 10, purchase_count: 3, user: @user
 			visit root_path
 			click_link 'Receita bruta total'
 			page.should have_content 'Receita bruta total: R$ 30,00'
