@@ -1,3 +1,9 @@
+# How to
+
+Para saber como configurar a aplicação, utilize o comando:
+
+	  $ make help
+	
 # Desafio de programação 1
 A idéia deste desafio é nos permitir avaliar melhor as habilidades de candidatos à vagas de programador, de vários níveis.
 
