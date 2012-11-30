@@ -210,7 +210,15 @@ pt-BR:
   activerecord:
     model:
       user: 'User'
+      entry: 'Entrada'
     attributes:
+      entry:
+        purchaser_name: 'Nome do comprador'
+        item_description: 'Descrição'
+        item_price: 'Preço'
+        purchase_count: 'Quantidade'
+        merchant_address: 'Endereço do comerciante'
+        merchant_name: 'Nome do comerciante'
       user:
         email: 'E-mail'
         password: 'Senha'

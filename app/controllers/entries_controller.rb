@@ -37,7 +37,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
 
     if @entry.update_attributes(params[:entry])
-      redirect_to @entry, notice: 'Entry was successfully updated.'
+      redirect_to entries_path, notice: 'Entrada atualizada com sucesso.'
     else
       render action: "edit"
     end

@@ -1,5 +1,18 @@
 <h1>Nova entrada</h1>
 
-<%= render 'form' %>
+<%= simple_form_for(@entry, html: { multipart: true }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= simple_fields_for(@entry_file) do |b| %>
+  		<%= b.input :file, as: 'file' %>
+  	<% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Enviar' %>
+  </div>
+<% end %>
+
 
 <%= link_to 'Voltar', entries_path, class: 'btn btn-primary' %>

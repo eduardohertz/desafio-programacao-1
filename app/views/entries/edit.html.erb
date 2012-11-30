@@ -1,6 +1,18 @@
-<h1>Editing entry</h1>
+<h1>Editar entrada</h1>
 
-<%= render 'form' %>
+<%= simple_form_for(@entry) do |f| %>
+  <%= f.error_notification %>
 
-<%= link_to 'Show', @entry %> |
-<%= link_to 'Back', entries_path %>
+  <div class="form-inputs">
+  	<%= f.input :purchaser_name %>
+  	<%= f.input :item_description %>
+  	<%= f.input :item_price %>
+  	<%= f.input :purchase_count %>
+  	<%= f.input :merchant_address %>
+  	<%= f.input :merchant_name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Salvar' %>
+  </div>
+<% end %>

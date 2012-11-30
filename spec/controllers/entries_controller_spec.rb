@@ -30,7 +30,7 @@ describe EntriesController do
   # Entry. As you add validations to Entry, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    { purchase_count: 1, item_price: 1.0 }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -42,7 +42,7 @@ describe EntriesController do
 
   describe "GET index" do
     it "assigns all entries as @entries" do
-      entry = Entry.create!
+      entry = Entry.create! valid_attributes
       entry.update_attribute(:user, @user)
       get :index, {}, valid_session
       assigns(:entries).should eq([entry])
@@ -116,7 +116,7 @@ describe EntriesController do
       it "redirects to the entry" do
         entry = Entry.create! valid_attributes
         put :update, {:id => entry.to_param, :entry => valid_attributes}, valid_session
-        response.should redirect_to(entry)
+        response.should redirect_to(entries_path)
       end
     end
 

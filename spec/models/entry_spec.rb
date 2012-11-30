@@ -37,4 +37,20 @@ describe Entry do
   context 'relations' do
   	it { should belong_to(:user) }
   end
+
+  context 'validations' do
+  	context 'item_price' do
+  		it 'blank' do
+	  		entry = FactoryGirl.build :entry, item_price: ''
+	  		entry.valid?.should be_false
+  		end
+  	end
+
+  	context 'purchase_count' do
+  		it 'blank' do
+	  		entry = FactoryGirl.build :entry, purchase_count: ''
+	  		entry.valid?.should be_false
+  		end
+  	end
+  end
 end
