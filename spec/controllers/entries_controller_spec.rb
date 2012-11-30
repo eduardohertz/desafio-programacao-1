@@ -59,7 +59,7 @@ describe EntriesController do
   describe "GET edit" do
     it "assigns the requested entry as @entry" do
       entry = Entry.create! valid_attributes
-      get :edit, {:id => entry.to_param}, valid_session
+      get :edit, {id: entry.to_param}, valid_session
       assigns(:entry).should eq(entry)
     end
   end
@@ -68,12 +68,12 @@ describe EntriesController do
     describe "with valid params" do
       it "creates a new Entry" do
         expect {
-          post :create, {:entry => valid_attributes, entry_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
+          post :create, { entry: valid_attributes, entry_file: { file: fixture_file_upload('/data.tab','text') } }, valid_session
         }.to change(Entry, :count).by(4)
       end
 
       it "assigns a newly created entry as @entry" do
-        post :create, {:entry => valid_attributes, entry_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
+        post :create, { entry: valid_attributes, entry_file: { file: fixture_file_upload('/data.tab','text') } }, valid_session
         assigns(:entry).should be_a(Entry)
       end
     end
@@ -82,14 +82,14 @@ describe EntriesController do
       it "assigns a newly created but unsaved entry as @entry" do
         # Trigger the behavior that occurs when invalid params are submitted
         Entry.any_instance.stub(:save).and_return(false)
-        post :create, {:entry => {  }, entry_file: {file: fixture_file_upload('/data.tab','text')} }, valid_session
+        post :create, { entry: {}, entry_file: { file: fixture_file_upload('/data.tab','text') } }, valid_session
         assigns(:entry).should be_a_new(Entry)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         EntryFile.any_instance.stub(:valid?).and_return(false)
-        post :create, {:entry => {  }}, valid_session
+        post :create, { entry: {} }, valid_session
         response.should render_template("new")
       end
     end
@@ -104,18 +104,18 @@ describe EntriesController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Entry.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-        put :update, {:id => entry.to_param, :entry => { "these" => "params" }}, valid_session
+        put :update, { id: entry.to_param, :entry => { "these" => "params" } }, valid_session
       end
 
       it "assigns the requested entry as @entry" do
         entry = Entry.create! valid_attributes
-        put :update, {:id => entry.to_param, :entry => valid_attributes}, valid_session
+        put :update, { id: entry.to_param, entry: valid_attributes }, valid_session
         assigns(:entry).should eq(entry)
       end
 
       it "redirects to the entry" do
         entry = Entry.create! valid_attributes
-        put :update, {:id => entry.to_param, :entry => valid_attributes}, valid_session
+        put :update, { id: entry.to_param, entry: valid_attributes }, valid_session
         response.should redirect_to(entries_path)
       end
     end
@@ -125,7 +125,7 @@ describe EntriesController do
         entry = Entry.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Entry.any_instance.stub(:save).and_return(false)
-        put :update, {:id => entry.to_param, :entry => {  }}, valid_session
+        put :update, { id: entry.to_param, entry: {} }, valid_session
         assigns(:entry).should eq(entry)
       end
 
@@ -133,7 +133,7 @@ describe EntriesController do
         entry = Entry.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Entry.any_instance.stub(:save).and_return(false)
-        put :update, {:id => entry.to_param, :entry => {  }}, valid_session
+        put :update, { id: entry.to_param, entry: {} }, valid_session
         response.should render_template("edit")
       end
     end
@@ -143,15 +143,14 @@ describe EntriesController do
     it "destroys the requested entry" do
       entry = Entry.create! valid_attributes
       expect {
-        delete :destroy, {:id => entry.to_param}, valid_session
+        delete :destroy, { id: entry.to_param }, valid_session
       }.to change(Entry, :count).by(-1)
     end
 
     it "redirects to the entries list" do
       entry = Entry.create! valid_attributes
-      delete :destroy, {:id => entry.to_param}, valid_session
+      delete :destroy, { id: entry.to_param }, valid_session
       response.should redirect_to(entries_url)
     end
   end
-
 end
