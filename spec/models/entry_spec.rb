@@ -26,4 +26,8 @@ describe Entry do
   		Entry.revenue('MY_TOKEN').should == 1000.0
 	  end
   end
+
+  context 'relations' do
+  	it { should belong_to(:user) }
+  end
 end

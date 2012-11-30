@@ -2,8 +2,13 @@
 require 'spec_helper'
 
 feature 'Send balance file' do
+	background do
+		@user = FactoryGirl.create :user
+		login(@user.email, '123456')
+	end
+
 	context 'when receive a valid file' do
-		it 'redirects to balances_path' do
+		it 'receive a file' do
 			visit root_path
 			click_link 'Enviar arquivo'
 			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/data.tab"
@@ -11,7 +16,16 @@ feature 'Send balance file' do
 			page.should have_content 'Arquivo enviado com sucesso.'
 		end
 
-		it 'show only its entries' do
+		it 'create entries to current_user' do
+			visit root_path
+			click_link 'Enviar arquivo'
+			attach_file 'Arquivo', "#{Rails.root}/spec/fixtures/data.tab"
+			click_button 'Enviar'
+			entries = Entry.where('image_token = ?', Entry.last.image_token)
+			entries.each { |entry| entry.user.should == @user }
+		end
+
+		it 'show only entries of the user' do
 			FactoryGirl.create :entry
 			visit root_path
 			click_link 'Enviar arquivo'

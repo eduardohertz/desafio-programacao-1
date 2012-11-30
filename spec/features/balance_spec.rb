@@ -2,10 +2,21 @@
 require 'spec_helper'
 
 feature 'Balance' do
+	background do
+		@user = FactoryGirl.create :user
+		login(@user.email, '123456')
+	end
+
 	context 'when there any entry' do
-		it 'show entries' do
-			entry_1 = FactoryGirl.create :entry, item_price: 10, purchase_count: 3
-			entry_2 = FactoryGirl.create :entry, item_price: 40, purchase_count: 1
+		it "show users' entries" do
+			entry_1 = FactoryGirl.create :entry, item_price: 10, 
+																						purchase_count: 3,
+																						user: @user
+			entry_2 = FactoryGirl.create :entry, item_price: 40,
+																						purchase_count: 1,
+																						user: @user
+			entry_3 = FactoryGirl.create :entry, item_price: 40,
+																						purchase_count: 1
 			visit root_path
 			click_link 'Receita bruta total'
 			within('table tr[2]') do
@@ -25,6 +36,8 @@ feature 'Balance' do
 				within('td[5]') { page.should have_content entry_2.merchant_address }
 				within('td[6]') { page.should have_content entry_2.merchant_name }
 			end
+
+			lambda { find('table tr[5]') }.should raise_error(Capybara::ElementNotFound)
 		end
 
 		it 'show balance' do

@@ -16,8 +16,9 @@ describe EntryFile do
 	end
 
 	it '#parse should separate entries' do
+		user = FactoryGirl.create :user
 		entry_file = EntryFile.new(file: File.open("#{Rails.root}/spec/fixtures/data.tab"))
-		entry_file.parse_and_create
+		entry_file.parse_and_create(user)
 		entry_file.entries.size.should == 4
 		Entry.all.size.should == 4
 	end

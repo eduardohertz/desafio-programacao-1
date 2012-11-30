@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121129225029) do
     t.string   "merchant_address"
     t.string   "merchant_name"
     t.string   "image_token"
+    t.integer  "user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

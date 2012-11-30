@@ -20,6 +20,12 @@ require 'spec_helper'
 
 describe EntriesController do
 
+  before do
+    @user = FactoryGirl.build :user
+    controller.stub(:current_user) { @user }
+    controller.should_receive(:authenticate_user!) { nil }
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Entry. As you add validations to Entry, be sure to
   # update the return value of this method accordingly.
@@ -31,12 +37,13 @@ describe EntriesController do
   # in order to pass any filters (e.g. authentication) defined in
   # EntrysController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {  }
   end
 
   describe "GET index" do
     it "assigns all entries as @entries" do
-      entry = Entry.create! valid_attributes
+      entry = Entry.create!
+      entry.update_attribute(:user, @user)
       get :index, {}, valid_session
       assigns(:entries).should eq([entry])
     end

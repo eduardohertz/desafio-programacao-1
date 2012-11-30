@@ -1,6 +1,9 @@
 class EntriesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
-    @entries = Entry.all
+    @entries = Entry.where('user_id = ?', current_user.id)
     @revenue = Entry.revenue
   end
 
@@ -23,7 +26,7 @@ class EntriesController < ApplicationController
     @entry_file = EntryFile.new(params[:entry_file])
 
     if @entry_file.valid?
-      @entry_file.parse_and_create
+      @entry_file.parse_and_create(current_user)
       redirect_to entry_path(token: @entry_file.image_token), notice: 'Arquivo enviado com sucesso.'
     else
       render action: "new"
